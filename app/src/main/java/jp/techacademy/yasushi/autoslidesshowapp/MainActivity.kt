@@ -30,17 +30,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Log.d("aa", Build.VERSION.SDK_INT.toString())
+        Log.d("bb", Build.VERSION_CODES.M.toString())
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 //アクセス確認されている時の処理
                 getContentsInfo()
-            } else {
-                //アクセス許可されてない時の処理
+            }
+            else {
                 requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSIONS_REQUEST_CODE)
             }
 
-        }
+        } else finish()
 
         start_Button.setOnClickListener() {
             if (mTimer == null){
@@ -164,7 +166,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        cursor!!.close()
+        if (cursor != null) {
+            cursor!!.close()
+        }
     }
 
 }
