@@ -106,6 +106,10 @@ class MainActivity : AppCompatActivity() {
                 imageView.setImageURI(imageUri)
             }
 
+            if (cursor != null) {
+                finish()
+            }
+
         }
 
         back_Button.setOnClickListener(){
@@ -125,6 +129,7 @@ class MainActivity : AppCompatActivity() {
 
                 imageView.setImageURI(imageUri)
             }
+
 
         }
 
@@ -162,6 +167,7 @@ class MainActivity : AppCompatActivity() {
 
                 imageView.setImageURI(imageUri)
         }
+        finish()
     }
 
     override fun onDestroy() {
